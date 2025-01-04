@@ -44,3 +44,29 @@ class ParkingLot:                                       # all of parking
         new_spot = ParkingSpot(floor, spot)
         heapq.heappush(self.pq, new_spot)
 
+if __name__ == "__main__":
+    pl = ParkingLot(10, 20)
+    pl.addParkingSpot(1, 1)
+    pl.addParkingSpot(2, 1)
+    pl.addParkingSpot(3, 1)
+    pl.addParkingSpot(1, 2)
+    pl.addParkingSpot(2, 2)
+    pl.addParkingSpot(3, 2)
+
+    n1 = pl.getNextAvailable()
+    print(f"Parked at Floor: {n1.floor}, Slot: {n1.spot}")
+    pl.park()
+
+    n2 = pl.getNextAvailable()
+    print(f"Parked at Floor: {n2.floor}, Slot: {n2.spot}")
+    pl.park()
+
+    n3 = pl.getNextAvailable()
+    print(f"Parked at Floor: {n3.floor}, Slot: {n3.spot}")
+    pl.unpark(1, 2)
+
+    n4 = pl.getNextAvailable()
+    print(f"Parked at Floor: {n4.floor}, Slot: {n4.spot}")
+
+    # pl.addParkingSpot(10, 21) # exception
+    n5 = pl.unpark(11,21)
