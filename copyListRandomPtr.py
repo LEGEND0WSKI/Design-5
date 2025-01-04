@@ -1,7 +1,7 @@
-# Time:
-# Space:
-# Leetcode:
-# Issues:
+# Time:O(n); 2 pass logic
+# Space:O(n) for all original value deep copies in hmap
+# Leetcode: Yes
+# Issues:self.hmap[node] = Node(node.val)  store the Node as LinkedList not just value
 
 class Solution:
     def __init__(self):
@@ -12,12 +12,12 @@ class Solution:
             return None
 
         curr = head
-        #pass 1
+        #pass 1 copy the original pointers (n)
         while curr:
             self.clone(curr) 
             curr = curr.next
-        #pass 2
-        curr = head
+        #pass 2 add next and random to deepcopy
+        curr = head                                     # reset
         while curr:
             copyCurr = self.hmap[curr]
             copyCurr.next = self.clone(curr.next)
@@ -30,6 +30,6 @@ class Solution:
         if not node: return 
 
         if node not in self.hmap:
-            self.hmap[node] = node.val
+            self.hmap[node] = Node(node.val)                # LL here not just val
 
         return self.hmap[node]
